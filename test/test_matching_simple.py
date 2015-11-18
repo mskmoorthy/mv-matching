@@ -378,12 +378,44 @@ class MatchingSimpleTests( unittest.TestCase ):
         td.showGraph(g, mate1, "test250_double_blooms")
         self.assertEqual( len(mate1), len(mate2) )
         
+    def test260_inter_blooms(self):
+        """ Two blooms, connected together. """
+        g = nx.Graph()
+        g.add_edges_from([(1,2),(2,3),(3,4),(4,5),(5,1),(5,6),(6,7),(4,6)])
+                          
+        mate1 = mv.max_cardinality_matching( g )
+        mate2 = nx.max_weight_matching( g, True )
+#         td.showGraph(g, mate1, "test260_inter_blooms")
+        self.assertEqual( len(mate1), len(mate2) )
+    
+    def test270_grid_graph(self):
+        """ Two blooms, connected together. """
+        g = nx.Graph()
+        g.add_edges_from([(1,2),(2,3),(3,4),(5,6),(6,7),(7,8), (9,10),(10,11),(11,12),(13,14),(14,15),(15,16),
+                          (1,5),(5,9),(9,13),(2,6),(6,10),(10,14),(3,7),(7,11),(11,15),(4,8),(8,12),(12,16)])
+                          
+        mate1 = mv.max_cardinality_matching( g )
+        mate2 = nx.max_weight_matching( g, True )
+        td.showGraph(g, mate1, "test270_Grid_Graphs")
+        self.assertEqual( len(mate1), len(mate2) )
+    
+    def test271_grid_graph(self):
+        """ Two blooms, connected together. """
+        g = nx.Graph()
+        g.add_edges_from([(1,2),(2,3),(3,4),(5,6),(6,7),(7,8), (9,10),(10,11),(11,12),(13,14),(14,15),(15,16),
+                          (1,5),(5,9),(9,13),(2,6),(6,10),(10,14),(3,7),(7,11),(11,15),(4,8),(8,12),(12,16),(16,17),(13,18)])
+                          
+        mate1 = mv.max_cardinality_matching( g )
+        mate2 = nx.max_weight_matching( g, True )
+        td.showGraph(g, mate1, "test270_Grid_Graphs")
+        self.assertEqual( len(mate1), len(mate2) )
+        
 def suiteCase():
     """
     Creates a suite of the selected set of unit tests from MatchingSimpleTests.
     """
     
-    tests = ['test250_double_blooms']
+    tests = ['test271_grid_graph']
     return unittest.TestSuite( map(MatchingSimpleTests, tests) )
 
 def suiteFull():
