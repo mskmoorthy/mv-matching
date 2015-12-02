@@ -1,3 +1,4 @@
 *.pydevproject
 *.project
 *.pyc
+test/test_driver.py

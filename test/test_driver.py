@@ -30,7 +30,7 @@ def showGraph(G, mate, label=""):
     # Set the positions for all nodes and the figure size
     plt.close('all')
     plt.figure( figsize=(10, 10) )
-    pos = nx.graphviz_layout(G, prog='sfdp', args='')
+    pos = nx.graphviz_layout(G, prog='fdp', args='')
     
     # Draw the graph with node labels and a title
     plt.title(label)
@@ -48,10 +48,10 @@ if __name__ == "__main__":
     
     # Run the unit tests from all testing modules and display their name information  
     try:
-        matchingSimpleSuite = test_matching_simple.suiteFull()
+        matchingSimpleSuite = test_matching_simple.suiteCase()
         matchingCompoundSuite = test_matching_compound.suiteFull()
         matchingRandomSuite = test_matching_random.suiteCase()
-        fullSuite = unittest.TestSuite( [matchingRandomSuite] )
+        fullSuite = unittest.TestSuite( [matchingSimpleSuite] )
         unittest.TextTestRunner( verbosity=2 ).run( fullSuite )
         
     # Without this, an error occurs for the unit tests

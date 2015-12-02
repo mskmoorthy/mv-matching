@@ -385,7 +385,7 @@ class MatchingSimpleTests( unittest.TestCase ):
                           
         mate1 = mv.max_cardinality_matching( g )
         mate2 = nx.max_weight_matching( g, True )
-#         td.showGraph(g, mate1, "test260_inter_blooms")
+        td.showGraph(g, mate1, "test260_inter_blooms")
         self.assertEqual( len(mate1), len(mate2) )
     
     def test270_grid_graph(self):
@@ -407,7 +407,18 @@ class MatchingSimpleTests( unittest.TestCase ):
                           
         mate1 = mv.max_cardinality_matching( g )
         mate2 = nx.max_weight_matching( g, True )
-        td.showGraph(g, mate1, "test270_Grid_Graphs")
+        td.showGraph(g, mate1, "test271_Grid_Graphs")
+        self.assertEqual( len(mate1), len(mate2) )
+    
+    def test280_pentagon_graph(self):
+        """ Two blooms, connected together. """
+        g = nx.Graph()
+        g.add_edges_from([(1,2),(2,3),(1,3),(3,4),(3,5),(4,5),(5,6),(6,7),(5,7),(7,8),(8,9),(7,9),
+                          (9,10),(10,2),(2,9)])
+                          
+        mate1 = mv.max_cardinality_matching( g )
+        mate2 = nx.max_weight_matching( g, True )
+        td.showGraph(g, mate1, "test280_pentagon_graph")
         self.assertEqual( len(mate1), len(mate2) )
         
 def suiteCase():
@@ -415,7 +426,7 @@ def suiteCase():
     Creates a suite of the selected set of unit tests from MatchingSimpleTests.
     """
     
-    tests = ['test271_grid_graph']
+    tests = ['test280_pentagon_graph','test270_grid_graph']
     return unittest.TestSuite( map(MatchingSimpleTests, tests) )
 
 def suiteFull():
